@@ -117,7 +117,8 @@ for mydoc in mydocs:
 query = {
     "$or":[
         {"type":"Database"},
-        {"type":"Machine Learning Library"}
+        {"type":"Machine Learning Library"},
+        {"type":"Programming Language"}
     ]
 }
 projection = {"_id":0, "name":1, "type":1}
@@ -126,3 +127,12 @@ mydocs = collection.find(query, projection)
 for mydoc in mydocs:
     print(mydoc)
 
+# Tüm Database'leri silin
+result = collection.delete_many({"type":"Database"})
+print("Deleted Documents: ", result.deleted_count)
+
+# Tüm dokümanları silin
+# result = collection.delete_many({})
+# print("Deleted Documents: ", result.deleted_count)
+
+client.close()
